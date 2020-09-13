@@ -168,7 +168,11 @@ Mode *Copter::mode_from_mode_num(const Mode::Number mode)
             ret = &mode_autorotate;
             break;
 #endif
-
+#if MODE_GUNDONG_ENABLED == ENABLED
+        case Mode::Number::GUNDONG:
+            ret = &mode_gundong;
+            break;
+#endif
         default:
             break;
     }

@@ -382,7 +382,9 @@
     # define MODE_AUTOROTATE_ENABLED DISABLED
 #endif
 //////////////////////////////////////////////////////////////////////////////
-
+#ifndef MODE_GUNDONG_ENABLED
+# define MODE_GUNDONG_ENABLED ENABLED
+#endif
 // Beacon support - support for local positioning systems
 #ifndef BEACON_ENABLED
 # define BEACON_ENABLED !HAL_MINIMIZE_FEATURES

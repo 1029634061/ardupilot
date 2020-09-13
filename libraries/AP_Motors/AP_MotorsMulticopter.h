@@ -30,6 +30,7 @@
 
 /// @class      AP_MotorsMulticopter
 class AP_MotorsMulticopter : public AP_Motors {
+    friend class ModeGundong;
 public:
 
     // Constructor
@@ -37,6 +38,7 @@ public:
 
     // output - sends commands to the motors
     virtual void        output() override;
+
 
     // output_min - sends minimum values out to the motors
     void                output_min() override;
@@ -103,6 +105,8 @@ protected:
 
     // output_to_motors - sends commands to the motors
     virtual void        output_to_motors() = 0;
+    virtual void        output_to_motors_rp() =0;
+
 
     // update the throttle input filter
     virtual void        update_throttle_filter() override;
@@ -200,4 +204,8 @@ protected:
 
     // array of motor output values
     float _actuator[AP_MOTORS_MAX_NUM_MOTORS];
+    float _actuator_r[AP_MOTORS_MAX_NUM_MOTORS];
+    float _actuator_p[AP_MOTORS_MAX_NUM_MOTORS];
+
+
 };
