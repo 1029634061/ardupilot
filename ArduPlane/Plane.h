@@ -780,7 +780,7 @@ private:
 
     // rudder mixing gain for differential thrust (0 - 1)
     float rudder_dt;
-
+    float elevator_dt;
     void adjust_nav_pitch_throttle(void);
     void update_load_factor(void);
     void send_fence_status(mavlink_channel_t chan);

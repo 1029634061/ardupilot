@@ -96,7 +96,9 @@ void QuadPlane::tailsitter_output(void)
             }
             if (mask != 0) {
                 // set AP_MotorsMatrix throttles enabled for forward flight
-                motors->output_motor_mask(throttle * 0.01f, mask, plane.rudder_dt);
+                float elev_gain = float(plane.g2.elev_dt_gain) / 100;
+                plane.elevator_dt = elev_gain * SRV_Channels::get_output_scaled(SRV_Channel::k_elevator) / float(SERVO_MAX);
+                motors->output_motor_mask(throttle * 0.01f, tailsitter.motor_mask, plane.rudder_dt, plane.elevator_dt);
             }
         }
         return;

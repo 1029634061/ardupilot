@@ -71,7 +71,8 @@ void GCS_MAVLINK::handle_device_op_read(const mavlink_message_t &msg)
         retcode,
         regstart,
         packet.count,
-        data);
+        data,
+        device_op_read_reply->bank);
     return;
 
 fail:

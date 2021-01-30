@@ -28,7 +28,7 @@ extern const AP_HAL::HAL& hal;
 // output a thrust to all motors that match a given motor mask. This
 // is used to control motors enabled for forward flight. Thrust is in
 // the range 0 to 1
-void AP_MotorsMatrixTS::output_motor_mask(float thrust, uint8_t mask, float rudder_dt)
+void AP_MotorsMatrixTS::output_motor_mask(float thrust, uint8_t mask, float rudder_dt,float elevator_dt)
 {
     const int16_t pwm_min = get_pwm_output_min();
     const int16_t pwm_range = get_pwm_output_max() - pwm_min;
@@ -42,8 +42,9 @@ void AP_MotorsMatrixTS::output_motor_mask(float thrust, uint8_t mask, float rudd
                     copter frame roll is plane frame yaw (this is only
                     used by tiltrotors and tailsitters)
                 */
-                float diff_thrust = get_roll_factor(i) * rudder_dt * 0.5f;
-                motor_out = pwm_min + pwm_range * constrain_float(thrust + diff_thrust, 0.0f, 1.0f);
+                float diff_rudder = get_roll_factor(i) * rudder_dt * 0.5f;
+                float diff_pitch =get_pitch_factor(i)* elevator_dt *0.5f;
+                motor_out = pwm_min + pwm_range * constrain_float(thrust + diff_rudder+diff_pitch, 0.0f, 1.0f);
             } else {
                 motor_out = pwm_min;
             }

@@ -1270,7 +1270,14 @@ const AP_Param::GroupInfo ParametersG2::var_info[] = {
     // @Increment: 1
     // @User: Standard
     AP_GROUPINFO("RTL_CLIMB_MIN", 27, ParametersG2, rtl_climb_min, 0),
-
+    // @Param: ELEV_DT_GAIN
+    // @DisplayName: elevator differential thrust gain
+    // @Description: gain control from elevator to differential thrust
+    // @Range: 0 100
+    // @Units: %
+    // @Increment: 1
+    // @User: Standard
+    AP_GROUPINFO("ELEV_DT_GAIN", 28, ParametersG2, elev_dt_gain, 10),
     AP_GROUPEND
 };
 
